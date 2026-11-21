@@ -1,0 +1,23 @@
+{
+  "name": "Take Your Time // Shin Godzilla Edition",
+  "short_name": "TakeYourTime",
+  "description": "Persona 5 Task Tracker with Shin Godzilla Atomic Blast Theme & Deadlines",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0b0213",
+  "theme_color": "#9d00ff",
+  "icons": [
+    {
+      "src": "/hat.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/hat.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

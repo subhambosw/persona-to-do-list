@@ -1,10 +1,10 @@
-/* BOREDOM CLEAR: Chrome Dino Godzilla Game (Matching User Image 1) */
+/* BOREDOM CLEAR: Tomb of the Mask × Chrome Dino Shin Godzilla */
 
 .boredom-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(11, 2, 19, 0.94);
-  backdrop-filter: blur(10px);
+  background: rgba(8, 1, 18, 0.94);
+  backdrop-filter: blur(12px);
   z-index: 999999;
   display: flex;
   align-items: center;
@@ -12,25 +12,39 @@
   pointer-events: auto;
 }
 
+/* Tomb of the Mask Arcade Cabinet */
 .boredom-game-cabinet {
   position: relative;
   width: 96%;
   max-width: 920px;
-  background: #ffffff; /* Classic Chrome Dino clean canvas background */
-  border: 4px solid #a855f7;
-  box-shadow: -12px 12px 0 #000000, 0 0 55px rgba(168, 85, 247, 0.7);
+  background: #0d021c;
+  border: 3px solid #00f0ff;
+  box-shadow: -10px 10px 0 #000000, 0 0 45px rgba(0, 240, 255, 0.45);
   clip-path: polygon(0 2%, 98% 0%, 100% 98%, 2% 100%);
-  padding: 1.4rem;
-  color: #333333;
+  padding: 1.2rem 1.4rem;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
+  transition: all 0.3s ease;
 }
 
-/* Dark mode toggle variant for Chrome Dino cabinet */
-.boredom-game-cabinet.dark-mode {
-  background: #140726;
-  color: #ffffff;
+/* Theme variants */
+.boredom-game-cabinet.theme-totm {
+  border-color: #00f0ff;
+  box-shadow: -10px 10px 0 #000000, 0 0 45px rgba(0, 240, 255, 0.45);
+}
+
+.boredom-game-cabinet.theme-godzilla {
+  border-color: #c026d3;
+  box-shadow: -10px 10px 0 #000000, 0 0 50px rgba(192, 38, 211, 0.6);
+  background: #120426;
+}
+
+.boredom-game-cabinet.theme-mono {
+  border-color: #ffffff;
+  box-shadow: -10px 10px 0 #000000, 0 0 30px rgba(255, 255, 255, 0.3);
+  background: #222222;
 }
 
 /* Header bar above the game */
@@ -39,65 +53,88 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px dashed #9d00ff;
+  border-bottom: 2px dashed rgba(0, 240, 255, 0.5);
   padding-bottom: 0.6rem;
   margin-bottom: 0.8rem;
 }
 
+.theme-godzilla .cabinet-header {
+  border-bottom-color: rgba(192, 38, 211, 0.6);
+}
+
+.theme-mono .cabinet-header {
+  border-bottom-color: rgba(255, 255, 255, 0.5);
+}
+
 .cabinet-title {
   font-family: 'Luckiest Guy', cursive;
-  font-size: 1.8rem;
+  font-size: 1.55rem;
   letter-spacing: 0.08em;
-  color: #9d00ff;
+  color: #ffe600;
   margin: 0;
   display: flex;
   align-items: center;
   gap: 0.6rem;
+  text-shadow: -2px 2px 0 #000000, 0 0 14px rgba(255, 230, 0, 0.7);
 }
 
-.dark-mode .cabinet-title {
-  color: #ffe600;
-  text-shadow: 0 0 10px rgba(255, 230, 0, 0.6);
+.theme-godzilla .cabinet-title {
+  color: #e879f9;
+  text-shadow: -2px 2px 0 #000000, 0 0 16px rgba(232, 121, 249, 0.8);
+}
+
+.theme-mono .cabinet-title {
+  color: #ffffff;
+  text-shadow: -2px 2px 0 #000000;
 }
 
 .cabinet-header-actions {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
+  gap: 0.7rem;
 }
 
 .mode-toggle-btn {
   background: #000000;
-  border: 1.5px solid #a855f7;
-  color: #e879f9;
+  border: 1.5px solid #00f0ff;
+  color: #00f0ff;
   font-family: 'Bebas Neue', sans-serif;
   font-size: 0.95rem;
   letter-spacing: 0.08em;
-  padding: 0.2rem 0.6rem;
+  padding: 0.3rem 0.8rem;
   cursor: url('/k32.cur'), pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  transform: skewX(-8deg);
   transition: all 0.2s ease;
 }
 
 .mode-toggle-btn:hover {
-  background: #9d00ff;
-  color: #ffffff;
+  background: #00f0ff;
+  color: #000000;
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.8);
 }
 
 .cabinet-close-btn {
   background: #000000;
-  border: 2px solid #ffffff;
+  border: 2px solid #fc1600;
   color: #ffffff;
   font-family: 'Luckiest Guy', sans-serif;
-  font-size: 1.1rem;
-  padding: 0.25rem 0.8rem;
+  font-size: 1rem;
+  padding: 0.3rem 0.9rem;
   cursor: url('/k32.cur'), pointer;
   clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
   transition: all 0.2s ease;
 }
 
 .cabinet-close-btn:hover {
   background: #fc1600;
   transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(252, 22, 0, 0.8);
 }
 
 /* Canvas Screen */
@@ -105,22 +142,74 @@
   position: relative;
   width: 100%;
   aspect-ratio: 840 / 340;
-  background: #f7f7f7;
-  border: 2px solid #cbd2cd;
+  background: #080112;
+  border: 2px solid #1f083b;
   overflow: hidden;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.08);
-}
-
-.dark-mode .game-canvas-wrapper {
-  background: #0d041c;
-  border-color: #581c87;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.9);
 }
 
 .game-canvas {
   width: 100%;
   height: 100%;
   display: block;
+  image-rendering: pixelated;
+}
+
+/* Subtle Retro Arcade Scanlines */
+.crt-scanline-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%,
+    rgba(0, 0, 0, 0.25) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.65;
+}
+
+/* Game Over Screen */
+.game-over-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 1, 18, 0.88);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  animation: fadeInGameOver 0.3s ease;
+}
+
+@keyframes fadeInGameOver {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.game-over-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 3.4rem;
+  color: #fc1600;
+  margin: 0 0 0.5rem 0;
+  text-shadow: -4px 4px 0 #000000, 0 0 30px #fc1600;
+  letter-spacing: 0.05em;
+}
+
+.game-over-stats {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  color: #ffe600;
+  letter-spacing: 0.12em;
+  margin: 0 0 1.5rem 0;
+  text-shadow: -2px 2px 0 #000000;
+}
+
+.play-again-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.35rem;
+  padding: 0.55rem 1.6rem;
 }
 
 /* Controls Bar */
@@ -136,21 +225,25 @@
 
 .control-tips {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   letter-spacing: 0.08em;
-  color: #555555;
+  color: #00f0ff;
   display: flex;
   align-items: center;
   gap: 1.2rem;
 }
 
-.dark-mode .control-tips {
+.theme-godzilla .control-tips {
   color: #e879f9;
+}
+
+.theme-mono .control-tips {
+  color: #cccccc;
 }
 
 .control-key {
   background: #000000;
-  border: 1px solid #7c3aed;
+  border: 1px solid #ffe600;
   color: #ffe600;
   padding: 0.15rem 0.55rem;
   border-radius: 3px;
@@ -159,13 +252,16 @@
 
 .arcade-action-btn {
   font-family: 'Luckiest Guy', cursive;
-  font-size: 1.1rem;
-  padding: 0.45rem 1.3rem;
+  font-size: 1.05rem;
+  padding: 0.45rem 1.2rem;
   border: 2px solid #000000;
   cursor: url('/k32.cur'), pointer;
   box-shadow: -3px 3px 0 #000000;
   transform: skewX(-6deg);
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .arcade-action-btn.fire-btn {
@@ -177,7 +273,7 @@
 .arcade-action-btn.fire-btn:hover {
   background: #d946ef;
   transform: skewX(-6deg) scale(1.08);
-  box-shadow: -5px 5px 0 #000000, 0 0 20px rgba(217, 70, 239, 0.9);
+  box-shadow: -5px 5px 0 #000000, 0 0 25px rgba(217, 70, 239, 0.95);
 }
 
 .arcade-action-btn.jump-btn {
@@ -188,16 +284,18 @@
 .arcade-action-btn.jump-btn:hover {
   background: #ffffff;
   transform: skewX(-6deg) scale(1.08);
+  box-shadow: -5px 5px 0 #000000, 0 0 15px rgba(255, 230, 0, 0.8);
 }
 
 .arcade-action-btn.duck-btn {
-  background: #cbd2cd;
+  background: #00f0ff;
   color: #000000;
 }
 
 .arcade-action-btn.duck-btn:hover {
   background: #ffffff;
   transform: skewX(-6deg) scale(1.08);
+  box-shadow: -5px 5px 0 #000000, 0 0 15px rgba(0, 240, 255, 0.8);
 }
 
 /* Floating Launcher Pill */

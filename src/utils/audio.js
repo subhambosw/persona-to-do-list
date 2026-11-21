@@ -90,6 +90,30 @@ class SoundController {
     osc.stop(this.ctx.currentTime + 0.08);
   }
 
+  // Retro 8-bit Dot / Coin Collect Chime (Tomb of the Mask)
+  playDotChime() {
+    if (this.muted) return;
+    this.init();
+    if (!this.ctx) return;
+
+    const t = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1200, t);
+    osc.frequency.exponentialRampToValueAtTime(1800, t + 0.05);
+
+    gain.gain.setValueAtTime(0.12, t);
+    gain.gain.exponentialRampToValueAtTime(0.001, t + 0.06);
+
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+
+    osc.start(t);
+    osc.stop(t + 0.06);
+  }
+
   // Task Completion: Persona Sharp Cut / Sword Slash
   playSlash() {
     if (this.muted) return;

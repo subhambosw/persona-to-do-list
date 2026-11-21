@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, useAnimationControls } from 'framer-motion';
 import { Volume2, VolumeX, Sparkles, Flame } from 'lucide-react';
 import { sounds } from '../../utils/audio.js';
+import { asset } from '../../utils/assets.js';
 import confetti from 'canvas-confetti';
 import './TakeYourTime.css';
 
@@ -52,7 +53,7 @@ const TakeYourTime = ({ onTriggerBeam }) => {
     <div className="tyt-container">
       <div className="tyt-graphics-wrapper" onClick={handleLogoClick} title="Take Your Time! Click for Atomic Blast!">
         <motion.img
-          src="/hat.png"
+          src={asset('hat.png')}
           alt="Phantom Hat"
           className="tyt-hat-icon"
           animate={hatControls}
@@ -61,7 +62,7 @@ const TakeYourTime = ({ onTriggerBeam }) => {
           whileTap={{ scale: 0.95 }}
         />
         <motion.img
-          src="/tyt2.png"
+          src={asset('tyt2.png')}
           alt="Take Your Time"
           className="tyt-text-logo"
           animate={logoControls}

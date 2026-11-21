@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sounds } from '../../utils/audio.js';
+import { asset } from '../../utils/assets.js';
 import './PersonaMascot.css';
 
 const DIALOGUES = [
@@ -43,7 +44,7 @@ const PersonaMascot = ({ recentEvent, onTriggerRoar }) => {
     setTimeout(() => setIsRoaring(false), 900);
   };
 
-  const imageSrc = costume === 'joker' ? '/joker.png' : '/tytpfp.png';
+  const imageSrc = costume === 'joker' ? asset('joker.png') : asset('tytpfp.png');
   const nameLabel = costume === 'joker' ? 'JOKER // PHANTOM' : 'REN // SHUJIN';
 
   return (

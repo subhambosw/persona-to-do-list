@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { asset } from './assets.js';
 
 class ReminderManager {
   constructor() {
@@ -42,8 +43,8 @@ class ReminderManager {
     try {
       new Notification(title, {
         body,
-        icon: '/hat.png',
-        badge: '/hat.png',
+        icon: asset('hat.png'),
+        badge: asset('hat.png'),
         tag: `reminder-${task.id}`,
         requireInteraction: true
       });

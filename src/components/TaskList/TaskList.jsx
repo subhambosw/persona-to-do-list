@@ -5,6 +5,7 @@ import confetti from 'canvas-confetti';
 import { sounds } from '../../utils/audio.js';
 import { reminderManager } from '../../utils/reminderManager.js';
 import { savePriorityTarget, loadPriorityTarget, isTaskTimeNear } from '../DaysUntilBanner/DaysUntilBanner.jsx';
+import { asset } from '../../utils/assets.js';
 import { Star, Bell, Clock } from 'lucide-react';
 import './TaskList.css';
 
@@ -344,7 +345,7 @@ const TaskList = ({ currentDate, onTasksChange, onTaskEvent }) => {
         <ul className="task-items-list">
           {tasksForDate.length === 0 ? (
             <div className="empty-task-placeholder">
-              <img src="/none.png" alt="No Tasks" className="empty-task-img" />
+              <img src={asset('none.png')} alt="No Tasks" className="empty-task-img" />
               <div className="empty-task-text">NO MISSIONS FOR THIS DAY</div>
             </div>
           ) : (
@@ -438,7 +439,7 @@ const TaskList = ({ currentDate, onTasksChange, onTaskEvent }) => {
                         title="Delete task"
                       >
                         <img
-                          src="/redCross.png"
+                          src={asset('redCross.png')}
                           alt="Delete"
                           className="action-icon-img cross-icon"
                         />

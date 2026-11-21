@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { sounds } from '../../utils/audio.js';
+import { asset } from '../../utils/assets.js';
 import './CallingCardAlert.css';
 
 const CallingCardAlert = ({ task, onComplete, onSnooze, onDismiss }) => {
@@ -25,7 +26,7 @@ const CallingCardAlert = ({ task, onComplete, onSnooze, onDismiss }) => {
         transition={{ type: "spring", stiffness: 380, damping: 22 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <img src="/hat.png" alt="Phantom Hat" className="calling-card-seal" />
+        <img src={asset('hat.png')} alt="Phantom Hat" className="calling-card-seal" />
 
         <div className="calling-card-addressed">
           TO THE INDIVIDUAL CONSUMED BY PROCRASTINATION

@@ -1,34 +1,45 @@
-const CACHE_NAME = 'take-your-time-offline-v1';
-const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json',
-  '/p5b.jpg',
-  '/hat.png',
-  '/joker.png',
-  '/tytpfp.png',
-  '/godzilla_roar.mp3',
-  '/redCross.png',
-  '/save.png',
-  '/sun.png',
-  '/moon.png',
-  '/arrowLeft.png',
-  '/arrowRight.png',
-  '/tracker.png',
-  '/tyt2.png',
-  '/cursor.cur',
-  '/k32.cur',
-  '/bondoni.ttf',
-  '/helveticanowdisplay-black.ttf',
-  '/Times New Roman Bold.ttf',
-  '/fonts/BebasNeue-Regular.ttf',
-  '/fonts/LuckiestGuy-Regular.ttf'
-];
+const CACHE_NAME = 'take-your-time-offline-v2';
 
 self.addEventListener('install', (event) => {
+  const scope = self.registration.scope;
+  const relativeAssets = [
+    scope,
+    `${scope}index.html`,
+    `${scope}manifest.json`,
+    `${scope}p5b.jpg`,
+    `${scope}hat.png`,
+    `${scope}joker.png`,
+    `${scope}tytpfp.png`,
+    `${scope}godzilla_roar.mp3`,
+    `${scope}godzilla_totm_run1.png`,
+    `${scope}godzilla_totm_run2.png`,
+    `${scope}godzilla_totm_jump.png`,
+    `${scope}godzilla_totm_duck.png`,
+    `${scope}godzilla_totm_fire.png`,
+    `${scope}totm_spikes.png`,
+    `${scope}totm_tank.png`,
+    `${scope}totm_bat1.png`,
+    `${scope}totm_bat2.png`,
+    `${scope}totm_dot.png`,
+    `${scope}redCross.png`,
+    `${scope}sun.png`,
+    `${scope}moon.png`,
+    `${scope}arrowLeft.png`,
+    `${scope}arrowRight.png`,
+    `${scope}tracker.png`,
+    `${scope}tyt2.png`,
+    `${scope}cursor.cur`,
+    `${scope}k32.cur`,
+    `${scope}bondoni.ttf`,
+    `${scope}helveticanowdisplay-black.ttf`,
+    `${scope}Times New Roman Bold.ttf`,
+    `${scope}fonts/BebasNeue-Regular.ttf`,
+    `${scope}fonts/LuckiestGuy-Regular.ttf`
+  ];
+
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(ASSETS_TO_CACHE).catch((err) => {
+      return cache.addAll(relativeAssets).catch((err) => {
         console.warn('Some assets could not be precached during install:', err);
       });
     }).then(() => self.skipWaiting())
@@ -50,7 +61,6 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  // Only handle GET requests for our app
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
@@ -68,9 +78,8 @@ self.addEventListener('fetch', (event) => {
         });
         return networkResponse;
       }).catch(() => {
-        // If offline and request is HTML, return cached root/index.html
         if (event.request.headers.get('accept') && event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('/');
+          return caches.match(self.registration.scope);
         }
       });
     })
@@ -81,20 +90,22 @@ self.addEventListener('fetch', (event) => {
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SHOW_REMINDER_NOTIFICATION') {
     const { title, body } = event.data;
+    const scope = self.registration.scope;
     self.registration.showNotification(title || 'TAKE YOUR TIME // MISSION CALLING CARD', {
       body: body || 'The deadline has arrived! Prepare for infiltration.',
-      icon: '/hat.png',
-      badge: '/hat.png',
+      icon: `${scope}hat.png`,
+      badge: `${scope}hat.png`,
       vibrate: [200, 100, 200, 100, 400],
       tag: 'persona-calling-card-reminder',
       requireInteraction: true,
-      data: { url: '/' }
+      data: { url: scope }
     });
   }
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
+  const targetUrl = event.notification.data?.url || self.registration.scope;
   event.waitUntil(
     clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
       for (const client of clientList) {
@@ -103,7 +114,7 @@ self.addEventListener('notificationclick', (event) => {
         }
       }
       if (clients.openWindow) {
-        return clients.openWindow('/');
+        return clients.openWindow(targetUrl);
       }
     })
   );

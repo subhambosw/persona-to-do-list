@@ -3,6 +3,7 @@ import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { sounds } from '../../utils/audio.js';
 import { Undo2, ArrowLeft, RotateCcw } from 'lucide-react';
+import { asset } from '../../utils/assets.js';
 import './WeeklyDisplay.css';
 
 const WeeklyDisplay = ({ currentDate, onChangeDate, onClose }) => {
@@ -127,7 +128,7 @@ const WeeklyDisplay = ({ currentDate, onChangeDate, onClose }) => {
             onClick={handlePrevWeek}
             title="Previous Week"
           >
-            <img src="/arrowLeft.png" alt="Prev" className="ribbon-arrow-img" />
+            <img src={asset('arrowLeft.png')} alt="Prev" className="ribbon-arrow-img" />
           </button>
 
           {weekDays.map((item, index) => {
@@ -147,17 +148,17 @@ const WeeklyDisplay = ({ currentDate, onChangeDate, onClose }) => {
               >
                 {isSelected && (
                   <img
-                    src="/tracker.png"
+                    src={asset('tracker.png')}
                     alt="Current"
                     className="active-tracker-badge"
                   />
                 )}
                 <div className="date-digits-row">
-                  <img src={`/nos/${d1}.png`} alt={`${d1}`} className="digit-img" />
-                  <img src={`/nos/${d2}.png`} alt={`${d2}`} className="digit-img" />
+                  <img src={asset(`nos/${d1}.png`)} alt={`${d1}`} className="digit-img" />
+                  <img src={asset(`nos/${d2}.png`)} alt={`${d2}`} className="digit-img" />
                 </div>
                 <img
-                  src={`/days2/${dayAbbr}.png`}
+                  src={asset(`days2/${dayAbbr}.png`)}
                   alt={dayAbbr}
                   className="day-abbr-img"
                 />
@@ -171,7 +172,7 @@ const WeeklyDisplay = ({ currentDate, onChangeDate, onClose }) => {
             onClick={handleNextWeek}
             title="Next Week"
           >
-            <img src="/arrowRight.png" alt="Next" className="ribbon-arrow-img" />
+            <img src={asset('arrowRight.png')} alt="Next" className="ribbon-arrow-img" />
           </button>
 
           {/* Persona 5 ⮌ BACK Exit Button on the right of the ribbon */}

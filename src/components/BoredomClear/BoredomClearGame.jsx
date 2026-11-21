@@ -63,9 +63,14 @@ const BoredomClearGame = ({ onClose }) => {
 
   // Preload all sprites
   useEffect(() => {
+    const base = import.meta.env.BASE_URL || './';
+    const resolve = (p) => {
+      const clean = p.startsWith('/') ? p.slice(1) : p;
+      return base.endsWith('/') ? `${base}${clean}` : `${base}/${clean}`;
+    };
     const loadSprite = (src) => {
       const img = new Image();
-      img.src = src;
+      img.src = resolve(src);
       return img;
     };
     gameRef.current.sprites.run1 = loadSprite('/godzilla_totm_run1.png');

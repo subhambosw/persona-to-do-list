@@ -10,7 +10,9 @@ class SoundController {
   initAudioElement() {
     if (typeof window !== 'undefined') {
       try {
-        this.godzillaAudio = new Audio('/godzilla_roar.mp3');
+        const base = import.meta.env.BASE_URL || './';
+        const soundPath = base.endsWith('/') ? `${base}godzilla_roar.mp3` : `${base}/godzilla_roar.mp3`;
+        this.godzillaAudio = new Audio(soundPath);
         this.godzillaAudio.preload = 'auto';
         this.godzillaAudio.volume = 0.85;
       } catch (err) {

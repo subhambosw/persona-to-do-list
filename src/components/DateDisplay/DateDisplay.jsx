@@ -2,6 +2,7 @@ import React from 'react';
 import dayjs from 'dayjs';
 import { motion } from 'framer-motion';
 import { sounds } from '../../utils/audio.js';
+import { asset } from '../../utils/assets.js';
 import './DateDisplay.css';
 
 const DateDisplay = ({ currentDate, onToggleWeek, onPrevDay, onNextDay, onGoToToday }) => {
@@ -21,7 +22,7 @@ const DateDisplay = ({ currentDate, onToggleWeek, onPrevDay, onNextDay, onGoToTo
     isNight = true;
   }
 
-  const weatherIcon = isNight ? '/moon.png' : '/sun.png';
+  const weatherIcon = isNight ? asset('moon.png') : asset('sun.png');
 
   const handleArrow = (callback) => {
     sounds.playClick();
@@ -231,7 +232,7 @@ const DateDisplay = ({ currentDate, onToggleWeek, onPrevDay, onNextDay, onGoToTo
         whileTap={{ scale: 0.95 }}
       >
         <img
-          src={`/days/${dayAbbr}.png`}
+          src={asset(`days/${dayAbbr}.png`)}
           alt={dayAbbr}
           className="day-img"
           style={{ filter: 'hue-rotate(270deg) brightness(1.2)' }}
@@ -246,7 +247,7 @@ const DateDisplay = ({ currentDate, onToggleWeek, onPrevDay, onNextDay, onGoToTo
           onClick={() => handleArrow(onPrevDay)}
           title="Previous Day"
         >
-          <img src="/arrowLeft.png" alt="Prev" className="nav-arrow-img" />
+          <img src={asset('arrowLeft.png')} alt="Prev" className="nav-arrow-img" />
         </button>
 
         {!date.isSame(dayjs(), 'day') && onGoToToday && (
@@ -266,7 +267,7 @@ const DateDisplay = ({ currentDate, onToggleWeek, onPrevDay, onNextDay, onGoToTo
           onClick={() => handleArrow(onNextDay)}
           title="Next Day"
         >
-          <img src="/arrowRight.png" alt="Next" className="nav-arrow-img" />
+          <img src={asset('arrowRight.png')} alt="Next" className="nav-arrow-img" />
         </button>
       </div>
     </div>

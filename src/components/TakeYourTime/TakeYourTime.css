@@ -1,0 +1,70 @@
+/* Take Your Time Bottom Right Widget */
+
+.tyt-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+.tyt-graphics-wrapper {
+  position: relative;
+  width: clamp(140px, 15vw, 220px);
+  cursor: url('/k32.cur'), pointer;
+  filter: drop-shadow(0 0 16px rgba(157, 0, 255, 0.7));
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.tyt-graphics-wrapper:hover {
+  transform: scale(1.08) rotate(2deg);
+  filter: drop-shadow(0 0 28px rgba(217, 70, 239, 0.95));
+}
+
+.tyt-hat-icon {
+  position: absolute;
+  top: -24%;
+  right: 15%;
+  width: 48%;
+  z-index: 2;
+  filter: drop-shadow(-3px 3px 0 #000000);
+}
+
+.tyt-text-logo {
+  width: 100%;
+  display: block;
+  filter: hue-rotate(270deg) brightness(1.2);
+}
+
+/* Tool controls bar next to or above TYT */
+.bottom-controls-bar {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.8rem;
+  align-items: center;
+}
+
+.bottom-ctrl-btn {
+  background: rgba(14, 3, 26, 0.9);
+  border: 1.5px solid #a855f7;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  padding: 0.25rem 0.6rem;
+  cursor: url('/k32.cur'), pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  clip-path: polygon(8% 0%, 100% 0%, 92% 100%, 0% 100%);
+  transition: all 0.2s ease;
+}
+
+.bottom-ctrl-btn:hover {
+  background: #9d00ff;
+  border-color: #ffffff;
+  transform: scale(1.08);
+}

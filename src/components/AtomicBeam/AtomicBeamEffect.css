@@ -1,0 +1,58 @@
+/* Shin Godzilla Screen-Slicing Atomic Laser Beam */
+
+.atomic-beam-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+/* White-hot violet laser line */
+.godzilla-laser-beam {
+  position: absolute;
+  top: 50%;
+  left: -20%;
+  width: 140%;
+  height: 6px;
+  background: #ffffff;
+  transform: rotate(-15deg);
+  box-shadow:
+    0 0 10px 4px #ffffff,
+    0 0 30px 12px #e879f9,
+    0 0 70px 30px #9d00ff,
+    0 0 120px 60px #581c87;
+  animation: laserSweep 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+@keyframes laserSweep {
+  0% {
+    opacity: 0;
+    transform: rotate(-15deg) scaleY(0.2);
+  }
+  30% {
+    opacity: 1;
+    transform: rotate(-15deg) scaleY(2.8);
+  }
+  70% {
+    opacity: 1;
+    transform: rotate(-15deg) scaleY(1.4);
+  }
+  100% {
+    opacity: 0;
+    transform: rotate(-15deg) scaleY(0.1);
+  }
+}
+
+.flash-screen {
+  position: absolute;
+  inset: 0;
+  background: rgba(168, 85, 247, 0.25);
+  animation: screenFlash 0.6s ease-out forwards;
+}
+
+@keyframes screenFlash {
+  0% { opacity: 0; }
+  25% { opacity: 0.7; }
+  100% { opacity: 0; }
+}

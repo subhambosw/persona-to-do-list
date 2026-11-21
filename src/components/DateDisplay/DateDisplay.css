@@ -1,0 +1,105 @@
+/* Persona 5 / Shin Godzilla Date & Time Display */
+
+.date-display-wrapper {
+  position: fixed;
+  top: 0.5rem;
+  left: 1.5rem;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  pointer-events: auto;
+}
+
+.date-canvas-box {
+  width: clamp(140px, 16vw, 210px);
+  aspect-ratio: 1 / 1;
+  position: relative;
+  filter: drop-shadow(0 0 16px rgba(157, 0, 255, 0.45));
+  transition: transform 0.25s ease, filter 0.25s ease;
+  cursor: url('/k32.cur'), pointer;
+}
+
+.date-canvas-box:hover {
+  transform: scale(1.05) rotate(1deg);
+  filter: drop-shadow(0 0 25px rgba(217, 70, 239, 0.8));
+}
+
+.date-svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Day of Week Button directly underneath */
+.day-of-week-pill {
+  margin-top: -1.2rem;
+  margin-left: 1.2rem;
+  z-index: 10;
+  cursor: url('/k32.cur'), pointer;
+  filter: drop-shadow(-3px 3px 0 #000000);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.day-of-week-pill:hover {
+  transform: scale(1.15) rotate(-5deg);
+  filter: drop-shadow(-4px 4px 0 #9d00ff);
+}
+
+.day-img {
+  height: 38px;
+  display: block;
+}
+
+/* Arrow controls below the calendar */
+.date-nav-controls {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+  margin-left: 2rem;
+  align-items: center;
+}
+
+.nav-arrow-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: url('/k32.cur'), pointer;
+  transition: transform 0.2s ease;
+  filter: drop-shadow(-2px 2px 0 #000000);
+}
+
+.nav-arrow-btn:hover {
+  transform: scale(1.25);
+  filter: drop-shadow(0 0 8px #d946ef);
+}
+
+.nav-arrow-btn:active {
+  transform: scale(0.95);
+}
+
+.nav-arrow-img {
+  width: 26px;
+  height: auto;
+  display: block;
+}
+
+.nav-today-btn {
+  background: #fc1600;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  clip-path: polygon(8% 0, 100% 0, 92% 100%, 0 100%);
+  cursor: url('/k32.cur'), pointer;
+  box-shadow: -2px 2px 0 #000000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-today-btn:hover {
+  transform: scale(1.1);
+  box-shadow: -3px 3px 0 #000000, 0 0 10px rgba(252, 22, 0, 0.8);
+}

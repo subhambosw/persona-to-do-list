@@ -1,0 +1,162 @@
+/* Persona Person (Joker) Interactive Widget */
+
+.persona-mascot-container {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 1.8rem;
+  z-index: 70;
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  pointer-events: auto;
+}
+
+/* Joker Character Cutout Frame */
+.persona-portrait-frame {
+  position: relative;
+  width: clamp(100px, 12vw, 160px);
+  aspect-ratio: 1 / 1.1;
+  background: #0d021a;
+  border: 3px solid #9d00ff;
+  box-shadow: -6px 6px 0 #000000, 0 0 25px rgba(157, 0, 255, 0.6);
+  clip-path: polygon(0 8%, 92% 0, 100% 92%, 8% 100%);
+  transform: rotate(-3deg);
+  cursor: url('/k32.cur'), pointer;
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.persona-portrait-frame:hover {
+  transform: rotate(0deg) scale(1.08);
+  border-color: #e879f9;
+  box-shadow: -8px 8px 0 #000000, 0 0 35px rgba(232, 121, 249, 0.9);
+}
+
+.persona-portrait-img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(232, 121, 249, 0.6));
+  transition: filter 0.2s ease, transform 0.2s ease;
+  user-select: none;
+}
+
+.persona-portrait-frame:hover .persona-portrait-img {
+  filter: drop-shadow(0 0 16px #ffffff);
+  transform: scale(1.05);
+}
+
+/* Character Tag */
+.persona-name-tag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  color: #ffffff;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-align: center;
+  padding: 0.15rem 0;
+  border-top: 1px solid #9d00ff;
+  text-shadow: 0 0 6px rgba(232, 121, 249, 0.8);
+}
+
+/* Comic Speech Bubble */
+.persona-speech-bubble {
+  position: relative;
+  background: #ffffff;
+  color: #000000;
+  padding: 0.6rem 1rem;
+  max-width: 260px;
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
+  transform: rotate(2deg);
+  box-shadow: -4px 4px 0 #000000;
+  border: 2px solid #000000;
+  margin-bottom: 2rem;
+  cursor: url('/k32.cur'), pointer;
+}
+
+.persona-speech-bubble::before {
+  content: '';
+  position: absolute;
+  bottom: 10px;
+  left: -12px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 14px solid #ffffff;
+}
+
+.speech-sender {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: #9d00ff;
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.speech-text {
+  font-family: 'PersonaHelvetica', 'Luckiest Guy', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  color: #000000;
+  margin: 0;
+}
+
+.speech-text.roar-highlight {
+  color: #fc1600;
+  font-family: 'Luckiest Guy', cursive;
+  letter-spacing: 0.05em;
+  font-size: 1.05rem;
+  text-shadow: 1px 1px 0 #ffe600;
+}
+
+/* Roar Shockwave Visual Bubble */
+.roar-comic-burst {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-6deg);
+  background: #fc1600;
+  color: #ffe600;
+  border: 4px solid #ffffff;
+  padding: 1rem 2.5rem;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 2.8rem;
+  letter-spacing: 0.08em;
+  box-shadow: -10px 10px 0 #000000, 0 0 50px rgba(252, 22, 0, 0.9);
+  clip-path: polygon(6% 0%, 100% 4%, 94% 100%, 0% 96%);
+  z-index: 9999;
+  pointer-events: none;
+  animation: burstShake 0.7s ease-out forwards;
+}
+
+@keyframes burstShake {
+  0% {
+    transform: translate(-50%, -50%) rotate(-6deg) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) rotate(4deg) scale(1.2);
+    opacity: 1;
+  }
+  40% {
+    transform: translate(-50%, -50%) rotate(-5deg) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-50%, -50%) rotate(2deg) scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(-2deg) scale(0.9);
+    opacity: 0;
+  }
+}

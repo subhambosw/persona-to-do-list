@@ -1,0 +1,455 @@
+/* Shin Godzilla × Persona 5 Task List Styling */
+
+.task-master-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: clamp(340px, 48vw, 740px);
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 50;
+  pointer-events: auto;
+}
+
+/* Atomic Blast Energy Gauge */
+.energy-gauge-container {
+  width: 95%;
+  margin-bottom: 0.8rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #581c87;
+  padding: 0.4rem 0.8rem;
+  clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+  box-shadow: -4px 4px 0 #000000, 0 0 15px rgba(168, 85, 247, 0.3);
+  transform: rotate(-0.5deg);
+}
+
+.energy-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  color: #e879f9;
+  margin-bottom: 0.2rem;
+}
+
+.energy-track {
+  width: 100%;
+  height: 12px;
+  background: #110420;
+  border: 1px solid #a855f7;
+  position: relative;
+  overflow: hidden;
+}
+
+.energy-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9333ea, #c026d3, #f43f5e, #ffffff);
+  box-shadow: 0 0 12px rgba(232, 121, 249, 0.9);
+  transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Task Container Box */
+.task-card-box {
+  width: 100%;
+  background: rgba(14, 3, 26, 0.92);
+  border: 3px solid #9d00ff;
+  box-shadow: -8px 8px 0 #000000, 0 0 35px rgba(157, 0, 255, 0.45);
+  clip-path: polygon(0% 2%, 98% 0%, 100% 98%, 2% 100%);
+  padding: 1.4rem 1.6rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Header bar above tasks */
+.task-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(168, 85, 247, 0.4);
+  padding-bottom: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.task-box-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-shadow: -2px 2px 0 #000000, 0 0 12px rgba(232, 121, 249, 0.7);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.date-indicator-badge {
+  background: #000000;
+  border: 1px solid #c026d3;
+  color: #e879f9;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  padding: 0.15rem 0.6rem;
+  transform: skewX(-10deg);
+}
+
+/* Input Form & Reminder Controls */
+.task-input-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.task-input-row {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  width: 100%;
+}
+
+.task-text-input {
+  flex: 1;
+  background: rgba(0, 0, 0, 0.75);
+  border: 2px solid #581c87;
+  border-bottom: 3px solid #9d00ff;
+  color: #ffffff;
+  font-family: 'Luckiest Guy', 'PersonaHelvetica', cursive;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+  padding: 0.55rem 0.9rem;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.task-text-input::placeholder {
+  color: #8b5cf6;
+  opacity: 0.6;
+}
+
+.task-text-input:focus {
+  border-color: #d946ef;
+  box-shadow: 0 0 16px rgba(217, 70, 239, 0.6);
+  background: rgba(0, 0, 0, 0.9);
+}
+
+/* Reminder Time Picker in Input Bar */
+.reminder-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(0, 0, 0, 0.8);
+  border: 2px solid #581c87;
+  padding: 0.25rem 0.5rem;
+  transform: skewX(-6deg);
+}
+
+.reminder-time-input {
+  background: transparent;
+  border: none;
+  color: #ffe600;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.06em;
+  outline: none;
+  cursor: url('/k32.cur'), pointer;
+  width: 95px;
+}
+
+.reminder-time-input::-webkit-calendar-picker-indicator {
+  filter: invert(1) hue-rotate(240deg);
+  cursor: pointer;
+}
+
+/* Preset time chips row */
+.reminder-presets-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-left: 0.2rem;
+}
+
+.preset-chip {
+  background: #1b0730;
+  border: 1px solid #7c3aed;
+  color: #e879f9;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  padding: 0.15rem 0.5rem;
+  cursor: url('/k32.cur'), pointer;
+  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
+  transition: all 0.2s ease;
+}
+
+.preset-chip:hover {
+  background: #9d00ff;
+  color: #ffffff;
+  border-color: #ffffff;
+  transform: scale(1.05);
+}
+
+.preset-chip.active {
+  background: #ffe600;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.task-add-btn {
+  background: #9d00ff;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.1rem;
+  padding: 0.55rem 1.1rem;
+  cursor: url('/k32.cur'), pointer;
+  box-shadow: -3px 3px 0 #000000;
+  transform: skewX(-6deg);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.task-add-btn:hover {
+  background: #d946ef;
+  transform: skewX(-6deg) scale(1.06);
+  box-shadow: -5px 5px 0 #000000, 0 0 15px rgba(232, 121, 249, 0.8);
+}
+
+/* Task List Display Items */
+.task-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-height: 280px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.4rem;
+}
+
+.task-item-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  background-color: #9d00ff;
+  background-image: linear-gradient(135deg, #7c3aed 0%, #9333ea 50%, #a855f7 100%);
+  border: 2px solid #e879f9;
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
+  box-shadow: -4px 4px 0 #000000;
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: url('/k32.cur'), pointer;
+}
+
+.task-item-card:hover {
+  transform: scale(1.02) rotate(-0.6deg);
+  border-color: #ffffff;
+  box-shadow: -6px 6px 0 #000000, 0 0 18px rgba(232, 121, 249, 0.75);
+}
+
+.task-item-card.is-completed {
+  background: #2a084e;
+  background-image: none;
+  border-color: #6b21a8;
+  opacity: 0.75;
+}
+
+/* Gold priority styling for starred tasks */
+.task-item-card.is-starred-card {
+  border-color: #ffe600;
+  box-shadow: -4px 4px 0 #000000, 0 0 22px rgba(255, 230, 0, 0.7);
+  background-image: linear-gradient(135deg, #6d1b9e 0%, #8b18b4 50%, #a020f0 100%);
+}
+
+.task-item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex: 1;
+  overflow: hidden;
+}
+
+.task-checkbox-diamond {
+  width: 18px;
+  height: 18px;
+  background: #000000;
+  border: 2px solid #ffffff;
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.task-checkbox-diamond.checked {
+  background: #ffe600;
+  border-color: #000000;
+}
+
+.task-item-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  overflow: hidden;
+}
+
+.task-item-title {
+  font-family: 'Luckiest Guy', 'PersonaHelvetica', cursive;
+  font-size: 1.25rem;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  text-shadow:
+    -2px -2px 0 #000000,
+    2px -2px 0 #000000,
+    -2px 2px 0 #000000,
+    2px 2px 0 #000000;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.task-item-title.strike {
+  text-decoration: line-through;
+  text-decoration-color: #f43f5e;
+  text-decoration-thickness: 4px;
+  color: #94a3b8;
+  text-shadow: none;
+}
+
+/* Reminder Badge on Task Item */
+.task-reminder-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #000000;
+  border: 1px solid #ffe600;
+  color: #ffe600;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.45rem;
+  transform: skewX(-8deg);
+  flex-shrink: 0;
+}
+
+/* Calling Card Status Badges on Task Item */
+.calling-card-active-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #fc1600;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  padding: 0.1rem 0.45rem;
+  transform: skewX(-8deg);
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(252, 22, 0, 0.8);
+  animation: callingCardPulse 1.4s infinite alternate;
+}
+
+@keyframes callingCardPulse {
+  0% {
+    box-shadow: 0 0 6px rgba(252, 22, 0, 0.7);
+    transform: skewX(-8deg) scale(1);
+  }
+  100% {
+    box-shadow: 0 0 16px rgba(255, 230, 0, 0.95);
+    transform: skewX(-8deg) scale(1.04);
+  }
+}
+
+.calling-card-pending-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #2a084e;
+  border: 1px dashed #c026d3;
+  color: #e879f9;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  padding: 0.08rem 0.4rem;
+  transform: skewX(-8deg);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+.task-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.task-action-btn {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: url('/k32.cur'), pointer;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.task-action-btn:hover {
+  transform: scale(1.3) rotate(8deg);
+  filter: drop-shadow(0 0 6px #ffe600);
+}
+
+.task-action-btn.delete-btn:hover {
+  filter: drop-shadow(0 0 8px #fc1600);
+}
+
+.action-icon-img {
+  width: 22px;
+  height: auto;
+  display: block;
+}
+
+.action-icon-img.cross-icon {
+  width: 18px;
+  filter: drop-shadow(0 0 3px #000000);
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.task-action-btn:hover .action-icon-img.cross-icon {
+  transform: rotate(15deg) scale(1.15);
+  filter: drop-shadow(0 0 6px #ff0000);
+}
+
+/* Empty state */
+.empty-task-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  opacity: 0.8;
+}
+
+.empty-task-img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 0 10px rgba(168, 85, 247, 0.4));
+}
+
+.empty-task-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.1em;
+  color: #c084fc;
+}

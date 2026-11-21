@@ -1,0 +1,381 @@
+/* Persona 5 / Shin Godzilla DAYS UNTIL Top-Right Banner */
+
+.days-until-wrapper {
+  position: fixed;
+  top: 1.2rem;
+  right: 1.5rem;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: auto;
+}
+
+/* The Main Slanted Persona Banner */
+.days-until-banner {
+  position: relative;
+  background-color: #fc1600; /* Persona Red by default as user requested! */
+  color: #ffffff;
+  padding: 0.6rem 1.4rem 0.6rem 2.2rem;
+  clip-path: polygon(6% 0%, 100% 0%, 94% 100%, 0% 100%);
+  transform: rotate(-2.5deg);
+  box-shadow: -6px 6px 0px #000000, 0 0 25px rgba(252, 22, 0, 0.6);
+  cursor: url('/k32.cur'), pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.2s ease;
+  user-select: none;
+  border-top: 3px solid #ffffff;
+  border-bottom: 3px solid #000000;
+  max-width: 440px;
+}
+
+.days-until-banner:hover {
+  transform: rotate(-1.5deg) scale(1.04);
+  box-shadow: -8px 8px 0px #000000, 0 0 35px rgba(252, 22, 0, 0.85);
+}
+
+/* Shin Godzilla Atomic Purple variant */
+.days-until-banner.theme-purple {
+  background-color: #8b00e8;
+  background-image: linear-gradient(135deg, #7c3aed 0%, #a855f7 50%, #9333ea 100%);
+  box-shadow: -6px 6px 0px #000000, 0 0 30px rgba(168, 85, 247, 0.8);
+}
+
+.days-until-banner.theme-purple:hover {
+  box-shadow: -8px 8px 0px #000000, 0 0 45px rgba(192, 38, 211, 0.95);
+}
+
+/* Warning Hazard Stripe on left edge */
+.hazard-stripe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 14px;
+  background: repeating-linear-gradient(
+    45deg,
+    #000000,
+    #000000 6px,
+    #ffdd00 6px,
+    #ffdd00 12px
+  );
+  clip-path: polygon(0 0, 100% 0, 60% 100%, 0 100%);
+}
+
+.banner-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.15rem;
+}
+
+.mission-tag {
+  background: #000000;
+  color: #ffffff;
+  font-family: 'PersonaHelvetica', 'Bebas Neue', sans-serif;
+  font-size: 0.8rem;
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.12em;
+  transform: skewX(-12deg);
+  border: 1px solid #ffffff;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.mission-tag .tag-indicator {
+  width: 6px;
+  height: 6px;
+  background-color: #fc1600;
+  border-radius: 50%;
+  animation: tagBlink 1s infinite alternate;
+}
+
+@keyframes tagBlink {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; transform: scale(1.3); }
+}
+
+.banner-content {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  white-space: nowrap;
+}
+
+.banner-label {
+  font-family: 'Bebas Neue', 'PersonaHelvetica', sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  text-shadow: -2px 2px 0 #000000, 2px 2px 0 #000000;
+}
+
+.target-title {
+  font-family: 'Luckiest Guy', 'PersonaHelvetica', cursive;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: #ffe600;
+  text-shadow: 
+    -2px -2px 0 #000000,
+    2px -2px 0 #000000,
+    -2px 2px 0 #000000,
+    2px 2px 0 #000000,
+    -4px 4px 0 #000000;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.ellipsis-dots {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  margin: 0 0.2rem;
+}
+
+.days-number-box {
+  background: #000000;
+  color: #ffffff;
+  padding: 0.1rem 0.8rem;
+  transform: skewX(-8deg) rotate(2deg);
+  border: 2px solid #ffffff;
+  box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.8);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.days-number {
+  font-family: 'Luckiest Guy', 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+}
+
+.days-number.critical {
+  color: #ff2222;
+  text-shadow: 0 0 15px rgba(255, 0, 0, 0.9);
+  animation: numberPanic 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes numberPanic {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15) rotate(-3deg); }
+}
+
+/* Stress sub-caption bar below banner */
+.stress-sub-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #000000;
+  color: #ff3333;
+  padding: 0.25rem 0.8rem;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  border-left: 3px solid #ff3333;
+  transform: rotate(-1.5deg) translate(-10px, -4px);
+  box-shadow: -4px 4px 0 rgba(0, 0, 0, 0.7);
+}
+
+.stress-sub-bar.stress-max {
+  color: #ffe600;
+  border-color: #ff0000;
+  background: #1a0000;
+  animation: stressPulse 1.2s infinite alternate;
+}
+
+@keyframes stressPulse {
+  0% { transform: rotate(-1.5deg) translate(-10px, -4px) scale(0.98); }
+  100% { transform: rotate(-1.5deg) translate(-10px, -4px) scale(1.02); }
+}
+
+/* Pulsating heartbeat effect for high stress */
+.panic-pulse {
+  animation: bannerHeartbeat 1s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+@keyframes bannerHeartbeat {
+  0% { transform: rotate(-2.5deg) scale(1); }
+  14% { transform: rotate(-2.5deg) scale(1.06); }
+  28% { transform: rotate(-2.5deg) scale(1); }
+  42% { transform: rotate(-2.5deg) scale(1.04); }
+  70% { transform: rotate(-2.5deg) scale(1); }
+}
+
+/* Mission Calling Card Editor Modal */
+.calling-card-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calling-card-card {
+  position: relative;
+  background: #110722;
+  border: 4px solid #9d00ff;
+  box-shadow: -10px 10px 0 #000000, 0 0 50px rgba(157, 0, 255, 0.6);
+  padding: 2rem;
+  width: 90%;
+  max-width: 520px;
+  clip-path: polygon(0 4%, 96% 0, 100% 96%, 4% 100%);
+  transform: rotate(-1deg);
+  color: #ffffff;
+}
+
+.calling-card-card.persona-red-modal {
+  border-color: #fc1600;
+  box-shadow: -10px 10px 0 #000000, 0 0 50px rgba(252, 22, 0, 0.6);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-title {
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.8rem;
+  letter-spacing: 0.05em;
+  color: #ffe600;
+  text-shadow: -2px 2px 0 #000000, 2px -2px 0 #000000;
+  margin: 0;
+}
+
+.modal-close-btn {
+  background: #000000;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-family: 'Luckiest Guy', sans-serif;
+  cursor: url('/k32.cur'), pointer;
+  transition: all 0.2s ease;
+}
+
+.modal-close-btn:hover {
+  background: #fc1600;
+  transform: rotate(10deg) scale(1.1);
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-label {
+  display: block;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  color: #d946ef;
+  margin-bottom: 0.4rem;
+}
+
+.persona-red-modal .form-label {
+  color: #ff6b6b;
+}
+
+.form-input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #a855f7;
+  color: #ffffff;
+  font-family: 'PersonaHelvetica', 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  padding: 0.6rem 0.8rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.persona-red-modal .form-input {
+  border-color: #fc1600;
+}
+
+.form-input:focus {
+  border-color: #ffe600;
+  box-shadow: 0 0 15px rgba(255, 230, 0, 0.4);
+}
+
+.quick-pick-section {
+  margin: 1.2rem 0;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.quick-pick-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  color: #a855f7;
+  margin-bottom: 0.5rem;
+}
+
+.quick-pick-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.quick-pick-chip {
+  background: #2a1145;
+  border: 1px solid #c026d3;
+  color: #ffffff;
+  padding: 0.3rem 0.6rem;
+  font-size: 0.85rem;
+  cursor: url('/k32.cur'), pointer;
+  transition: all 0.2s ease;
+  clip-path: polygon(4% 0%, 100% 0%, 96% 100%, 0% 100%);
+}
+
+.quick-pick-chip:hover {
+  background: #9d00ff;
+  transform: scale(1.05);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-save-btn {
+  background: #fc1600;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.2rem;
+  padding: 0.5rem 1.5rem;
+  box-shadow: -4px 4px 0 #000000;
+  cursor: url('/k32.cur'), pointer;
+  transform: skewX(-6deg);
+  transition: all 0.2s ease;
+}
+
+.modal-save-btn:hover {
+  background: #ffe600;
+  color: #000000;
+  transform: skewX(-6deg) scale(1.08);
+}

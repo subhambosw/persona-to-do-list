@@ -1,0 +1,190 @@
+@font-face {
+  font-family: 'PersonaTimes';
+  src: url('/Times New Roman Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PersonaBodoni';
+  src: url('/bondoni.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'PersonaHelvetica';
+  src: url('/helveticanowdisplay-black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Luckiest Guy';
+  src: url('/fonts/LuckiestGuy-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('/fonts/BebasNeue-Regular.ttf') format('truetype');
+}
+
+:root {
+  --color-atomic-bg: #0b0213;
+  --color-atomic-deep: #170428;
+  --color-atomic-purple: #9d00ff;
+  --color-atomic-neon: #c026d3;
+  --color-atomic-beam: #e879f9;
+  --color-atomic-white: #faf5ff;
+  --color-atomic-magenta: #f43f5e;
+  --color-atomic-dark: #000000;
+  --color-p5-red: #fc1600;
+
+  --theme-primary: var(--color-atomic-purple);
+  --theme-secondary: var(--color-atomic-neon);
+  --theme-accent: var(--color-atomic-beam);
+  --theme-glow: rgba(184, 0, 255, 0.65);
+
+  font-family: 'PersonaHelvetica', 'Luckiest Guy', sans-serif;
+  line-height: 1.5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: var(--color-atomic-bg);
+  color: #ffffff;
+}
+
+body {
+  min-height: 100vh;
+  cursor: url('/cursor.cur'), auto;
+  user-select: none;
+  position: relative;
+}
+
+/* 🎭 PERSONA 5 JOKER BACKGROUND LAYER IN SHIN GODZILLA ATOMIC PURPLE */
+.persona-background-layer {
+  position: fixed;
+  inset: 0;
+  background-image: url('/p5b.jpg');
+  background-position: center right;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: hue-rotate(270deg) saturate(1.45) contrast(1.15) brightness(0.85);
+  z-index: 0;
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* Atmospheric dark gradient fade on the left so the calendar and text pop */
+.persona-bg-vignette {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 70% 50%, transparent 30%, rgba(11, 2, 19, 0.75) 75%, #0b0213 100%),
+              linear-gradient(90deg, rgba(11, 2, 19, 0.95) 0%, rgba(11, 2, 19, 0.6) 45%, transparent 70%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Halftone Dot Overlay */
+.halftone-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(168, 85, 247, 0.15) 1.5px, transparent 1.5px);
+  background-size: 16px 16px;
+  z-index: 2;
+}
+
+/* Subtle Atomic Laser Beam Streak across the background */
+.atomic-beam-streak {
+  position: fixed;
+  top: 35%;
+  left: -20%;
+  width: 140%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(232, 121, 249, 0.8), rgba(255, 255, 255, 0.95), rgba(168, 85, 247, 0.8), transparent);
+  box-shadow: 0 0 15px 4px rgba(217, 70, 239, 0.6), 0 0 35px 10px rgba(147, 51, 234, 0.4);
+  transform: rotate(-12deg);
+  opacity: 0.45;
+  pointer-events: none;
+  z-index: 2;
+  animation: beamPulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes beamPulse {
+  0% {
+    opacity: 0.3;
+    transform: rotate(-12deg) scaleY(0.8);
+  }
+  100% {
+    opacity: 0.65;
+    transform: rotate(-12deg) scaleY(1.3);
+  }
+}
+
+/* 🦖 KAIJU SHAKE: Screen tremor when Shin Godzilla roars */
+.kaiju-tremor {
+  animation: kaijuShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes kaijuShake {
+  10%, 90% { transform: translate3d(-2px, -1px, 0); }
+  20%, 80% { transform: translate3d(3px, 2px, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, -2px, 0); }
+  40%, 60% { transform: translate3d(4px, 3px, 0); }
+}
+
+/* Shin Godzilla Dorsal Spine Glow effect on key elements */
+.atomic-glow {
+  box-shadow: 0 0 20px rgba(184, 0, 255, 0.6), 0 0 40px rgba(192, 38, 211, 0.3);
+}
+
+.atomic-text-glow {
+  text-shadow: 
+    0 0 8px rgba(232, 121, 249, 0.8),
+    0 0 20px rgba(184, 0, 255, 0.6),
+    0 0 35px rgba(147, 51, 234, 0.4);
+}
+
+/* Persona 5 Cutout Typography */
+.persona-font {
+  font-family: 'PersonaHelvetica', 'Luckiest Guy', sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.ransom-font {
+  font-family: 'Bebas Neue', 'PersonaHelvetica', sans-serif;
+}
+
+/* Custom Pointer */
+a, button, input[type="submit"], .clickable {
+  cursor: url('/k32.cur'), pointer !important;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(11, 2, 19, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-primary);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-secondary);
+}

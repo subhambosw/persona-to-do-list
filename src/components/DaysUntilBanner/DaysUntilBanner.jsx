@@ -111,7 +111,7 @@ export const savePriorityTarget = (data) => {
   window.dispatchEvent(new Event('priorityTargetUpdated'));
 };
 
-const DaysUntilBanner = ({ currentDate, availableTasks = [] }) => {
+const DaysUntilBanner = ({ currentDate, availableTasks = [], isCalendarOpen = false }) => {
   const [nearTasks, setNearTasks] = useState(() => getNearStarredTasks(currentDate));
   const [activeIndex, setActiveIndex] = useState(0);
   const [isEditing, setIsEditing] = useState(false);
@@ -149,8 +149,8 @@ const DaysUntilBanner = ({ currentDate, availableTasks = [] }) => {
     };
   }, [currentDate, activeIndex]);
 
-  // If NO starred task is near, REMOVE top priority card completely!
-  if (nearTasks.length === 0) {
+  // If calendar is open or NO starred task is near, REMOVE top priority card completely!
+  if (isCalendarOpen || nearTasks.length === 0) {
     return null;
   }
 

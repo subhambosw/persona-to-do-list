@@ -100,7 +100,7 @@ const BoredomClearGame = ({ onClose }) => {
     game.dotsCount = 0;
     game.hp = 10;
     game.specialEnergy = 50;
-    game.speed = 6.0;
+    game.speed = 3.6;
     game.tick = 0;
     game.obstacles = [];
     game.collectibles = [];
@@ -227,8 +227,8 @@ const BoredomClearGame = ({ onClose }) => {
       // 1. UPDATE STATE
       game.score += 1;
       setScore(game.score);
-      // Progressive speed scaling
-      game.speed = 6.0 + Math.min(game.score / 500, 7.5);
+      // Progressive speed scaling (relaxed start, gradual arcade acceleration)
+      game.speed = 3.6 + Math.min(game.score / 1500, 5.0);
 
       // Milestone chime every 100 points
       if (game.score - game.lastMilestone >= 100) {
@@ -358,7 +358,8 @@ const BoredomClearGame = ({ onClose }) => {
       }
 
       // ⚔️ SPAWN OBSTACLES (Tomb of the Mask Spikes, Cyber Tanks, 3-tier Flying Bats)
-      if (currentTime - game.lastObstacleSpawn > 1350 + Math.random() * 1250) {
+      const minObstacleDelay = Math.max(1200, 2200 - (game.speed - 3.6) * 180);
+      if (currentTime - game.lastObstacleSpawn > minObstacleDelay + Math.random() * 1100) {
         const rand = Math.random();
         let obsType = 'SPIKES';
         let y = game.groundY - 26;

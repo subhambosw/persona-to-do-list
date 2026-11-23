@@ -8,16 +8,16 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  z-index: 85;
+  z-index: 105;
   pointer-events: auto;
 }
 
 .weekly-calendar-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(8, 2, 16, 0.65);
-  backdrop-filter: blur(4px);
-  z-index: 82;
+  background: rgba(8, 2, 16, 0.75);
+  backdrop-filter: blur(5px);
+  z-index: 100;
   cursor: url('/k32.cur'), pointer;
 }
 
@@ -25,9 +25,10 @@
 .weekly-ribbon-top-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.2rem;
   margin-bottom: 0.8rem;
-  z-index: 86;
+  z-index: 106;
 }
 
 .calendar-exit-back-btn {

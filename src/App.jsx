@@ -198,10 +198,15 @@ function App() {
       </AnimatePresence>
 
       {/* Top Right: Persona 5 DAYS UNTIL UI */}
-      <DaysUntilBanner
-        currentDate={currentDate}
-        availableTasks={availableTasks}
-      />
+      <AnimatePresence>
+        {!isWeek && (
+          <DaysUntilBanner
+            currentDate={currentDate}
+            availableTasks={availableTasks}
+            isCalendarOpen={isWeek}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Top Left: Persona 5 Date & Time Calendar Widget */}
       <AnimatePresence mode="wait">

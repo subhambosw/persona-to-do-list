@@ -160,3 +160,88 @@
     opacity: 0;
   }
 }
+
+/* Animated Gear Pocket Watch Badge in Joker's Hand */
+.mascot-pocket-watch-badge {
+  position: absolute;
+  bottom: 22px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  background: #110526;
+  border: 2px solid #ffe600;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.8), -2px 2px 0 #000;
+  cursor: pointer;
+  animation: watchFloat 2.5s infinite ease-in-out;
+}
+
+@keyframes watchFloat {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-3px) scale(1.08); }
+}
+
+.mascot-watch-cog-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px dashed #9d00ff;
+  animation: cogSpin 6s linear infinite;
+}
+
+@keyframes cogSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.mascot-watch-hand-tick {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  width: 2px;
+  height: 10px;
+  background: #e60012;
+  transform-origin: bottom center;
+  animation: handTick 2s linear infinite;
+}
+
+@keyframes handTick {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to { transform: translateX(-50%) rotate(360deg); }
+}
+
+.mascot-watch-icon {
+  color: #ffe600;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 4px #ffe600);
+}
+
+/* Costume Switch Button */
+.mascot-costume-switch-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid #c026d3;
+  color: #c4b5fd;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 12;
+  transition: all 0.2s ease;
+}
+
+.mascot-costume-switch-btn:hover {
+  background: #c026d3;
+  color: #fff;
+  transform: rotate(180deg) scale(1.2);
+}

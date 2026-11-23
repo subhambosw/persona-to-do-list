@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { sounds } from '../../utils/audio.js';
 import { asset } from '../../utils/assets.js';
+import { Clock, RefreshCw } from 'lucide-react';
 import './PersonaMascot.css';
 
 const DIALOGUES = [
-  'Looking cool, Joker! Keep checking off targets.',
+  'Looking cool, Joker! Press me to check the Chrono Pocket Watch.',
   'Take your time... or the atomic blast will vaporize Tokyo!',
-  'Have you sent the calling card yet?',
-  'One step closer to finishing the mission!',
+  'Have you sent the calling card yet? Check the Chrono Watch!',
+  'One step closer to finishing the mission! Open the Pocket Watch.',
   'Stay focused! Deadlines wait for no one.'
 ];
 
-const PersonaMascot = ({ recentEvent, onTriggerRoar }) => {
+const PersonaMascot = ({ recentEvent, onTriggerRoar, onOpenPocketWatch }) => {
   const [costume, setCostume] = useState('joker'); // 'joker' or 'glasses'
   const [speech, setSpeech] = useState(DIALOGUES[0]);
   const [isRoaring, setIsRoaring] = useState(false);
@@ -34,7 +35,16 @@ const PersonaMascot = ({ recentEvent, onTriggerRoar }) => {
     }
   }, [recentEvent]);
 
-  const handleToggleCostume = () => {
+  // Primary action: Camera dive into the Pocket Watch Menu!
+  const handleMascotClick = () => {
+    sounds.playClick();
+    if (onOpenPocketWatch) {
+      onOpenPocketWatch();
+    }
+  };
+
+  const handleToggleCostume = (e) => {
+    e.stopPropagation();
     sounds.playGodzillaRoar();
     setIsRoaring(true);
     setCostume((prev) => (prev === 'joker' ? 'glasses' : 'joker'));
@@ -64,11 +74,11 @@ const PersonaMascot = ({ recentEvent, onTriggerRoar }) => {
       </AnimatePresence>
 
       <div className="persona-mascot-container">
-        {/* Slanted Comic Portrait Box */}
+        {/* Slanted Comic Portrait Box (Press to zoom into the Stopwatch!) */}
         <motion.div
           className="persona-portrait-frame"
-          onClick={handleToggleCostume}
-          title="Click to switch Joker costume & test Shin Godzilla Roar!"
+          onClick={handleMascotClick}
+          title="Press Joker to zoom into the Chrono Stopwatch Menu!"
           whileHover={{ scale: 1.1, rotate: 0 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -81,17 +91,36 @@ const PersonaMascot = ({ recentEvent, onTriggerRoar }) => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 350, damping: 20 }}
           />
+
+          {/* Animated Gear Stopwatch in Joker's Hand */}
+          <div className="mascot-pocket-watch-badge" title="Animated Chrono Stopwatch">
+            <div className="mascot-watch-cog-ring" />
+            <div className="mascot-watch-hand-tick" />
+            <Clock size={14} className="mascot-watch-icon" />
+          </div>
+
+          {/* Quick Costume Switch Button */}
+          <button
+            type="button"
+            className="mascot-costume-switch-btn"
+            onClick={handleToggleCostume}
+            title="Toggle Joker / Ren costume"
+          >
+            <RefreshCw size={11} />
+          </button>
+
           <div className="persona-name-tag">{nameLabel}</div>
         </motion.div>
 
-        {/* Dynamic Comic Speech Bubble */}
+        {/* Dynamic Comic Speech Bubble & Action Prompt */}
         <motion.div
           className="persona-speech-bubble"
-          onClick={handleToggleCostume}
+          onClick={handleMascotClick}
           initial={{ opacity: 0, x: -10 }}
           animate={{ opacity: 1, x: 0 }}
+          title="Click to dive into the Chrono Stopwatch!"
         >
-          <span className="speech-sender">PHANTOM THIEVES HUD</span>
+          <span className="speech-sender">CHRONO POCKET WATCH // CLICK ME</span>
           <p className={`speech-text ${isRoaring ? 'roar-highlight' : ''}`}>
             {speech}
           </p>

@@ -16,6 +16,8 @@ import ConfidantsDrawer from './components/Confidants/ConfidantsDrawer.jsx';
 import ThiefStatsModal from './components/ThiefStats/ThiefStatsModal.jsx';
 import GodzillaEvolutionWidget from './components/GodzillaEvolution/GodzillaEvolutionWidget.jsx';
 import AllOutAttackCutin from './components/AllOutAttack/AllOutAttackCutin.jsx';
+import PocketWatchMenu from './components/PocketWatchMenu/PocketWatchMenu.jsx';
+import { lofiPlayer } from './utils/lofiPlayer.js';
 import { reminderManager } from './utils/reminderManager.js';
 import { sounds } from './utils/audio.js';
 import { Gamepad2 } from 'lucide-react';
@@ -33,6 +35,7 @@ function App() {
   const [isBoredomOpen, setIsBoredomOpen] = useState(false);
 
   // New P5 × Shin Godzilla Tactical Features
+  const [isPocketWatchOpen, setIsPocketWatchOpen] = useState(false);
   const [isPomodoroOpen, setIsPomodoroOpen] = useState(false);
   const [isConfidantsOpen, setIsConfidantsOpen] = useState(false);
   const [isStatsOpen, setIsStatsOpen] = useState(false);
@@ -243,9 +246,10 @@ function App() {
         onTaskEvent={handleTaskEvent}
       />
 
-      {/* Bottom Left: Interactive Persona Mascot (Joker) with dynamic speech & Roar tester */}
+      {/* Bottom Left: Interactive Persona Mascot (Joker) with animated stopwatch & Chrono dive */}
       <PersonaMascot
         recentEvent={recentTaskEvent}
+        onOpenPocketWatch={() => setIsPocketWatchOpen(true)}
         onTriggerRoar={() => {
           setIsTremorActive(true);
           setIsFiringBeam(true);
@@ -301,6 +305,20 @@ function App() {
         isOpen={isAllOutAttackOpen}
         onClose={() => setIsAllOutAttackOpen(false)}
         tasksClearedCount={availableTasks.filter((t) => t.isComplete).length || 5}
+      />
+
+      {/* ⏱️ Persona 5 Over-The-Shoulder Chrono Pocket Watch Menu */}
+      <PocketWatchMenu
+        isOpen={isPocketWatchOpen}
+        onClose={() => setIsPocketWatchOpen(false)}
+        onOpenPomodoro={() => setIsPomodoroOpen(true)}
+        onOpenBoredom={() => setIsBoredomOpen(true)}
+        onToggleRadio={() => {
+          sounds.playClick();
+          lofiPlayer.toggle();
+        }}
+        onOpenConfidants={() => setIsConfidantsOpen(true)}
+        onOpenEvolution={() => setIsEvolutionOpen(true)}
       />
     </div>
   );

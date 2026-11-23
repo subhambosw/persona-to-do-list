@@ -1,4 +1,16 @@
-const CACHE_NAME = 'take-your-time-offline-v2';
+const CACHE_NAME = 'take-your-time-offline-v3';
+
+// Do not intercept or cache during local development
+const isDevHost = self.location.hostname === 'localhost' ||
+  self.location.hostname === '127.0.0.1' ||
+  self.location.hostname === '[::1]';
+
+if (isDevHost) {
+  self.addEventListener('fetch', () => {
+    // Pass-through to network immediately
+    return;
+  });
+}
 
 self.addEventListener('install', (event) => {
   const scope = self.registration.scope;
@@ -61,6 +73,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
+  if (isDevHost) return;
   if (event.request.method !== 'GET') return;
 
   event.respondWith(

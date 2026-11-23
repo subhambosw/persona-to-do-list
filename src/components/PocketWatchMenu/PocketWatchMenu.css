@@ -48,11 +48,11 @@
 /* Central Animated Gear Stopwatch Clock Hands */
 .gear-watch-center-interactive {
   position: absolute;
-  top: 50%;
-  left: 48%;
+  top: 51.5%;
+  left: 51.5%;
   transform: translate(-50%, -50%);
-  width: 160px;
-  height: 160px;
+  width: 150px;
+  height: 150px;
   z-index: 5;
   pointer-events: none;
   display: flex;
@@ -198,40 +198,47 @@
   color: #000000;
 }
 
-/* Individual Hotspot Anchor Coordinates */
+/* Individual Hotspot Anchor Coordinates (Aligned to Over-the-Shoulder Right-Side Arc) */
 .hotspot-infiltrate {
-  top: 15%;
-  left: 20%;
-  transform: rotate(-14deg);
-  clip-path: polygon(6% 0, 100% 0, 94% 100%, 0 100%);
-}
-
-.hotspot-boredom {
-  top: 14%;
-  right: 18%;
-  transform: rotate(14deg);
-  clip-path: polygon(0 0, 94% 0, 100% 100%, 6% 100%);
-}
-
-.hotspot-radio {
-  top: 48%;
-  right: 10%;
+  top: 9%;
+  right: 8%;
   transform: rotate(-3deg);
   clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
 }
 
+.hotspot-boredom {
+  top: 23%;
+  right: 5%;
+  transform: rotate(2deg);
+  clip-path: polygon(0 0, 96% 0, 100% 100%, 4% 100%);
+}
+
+.hotspot-radio {
+  top: 38%;
+  right: 4%;
+  transform: rotate(-2deg);
+  clip-path: polygon(3% 0, 100% 0, 97% 100%, 0 100%);
+}
+
 .hotspot-confidants {
-  bottom: 22%;
-  left: 14%;
-  transform: rotate(8deg);
-  clip-path: polygon(0 0, 95% 0, 100% 100%, 5% 100%);
+  top: 53%;
+  right: 7%;
+  transform: rotate(3deg);
+  clip-path: polygon(0 0, 97% 0, 100% 100%, 3% 100%);
 }
 
 .hotspot-evolution {
-  bottom: 18%;
-  right: 20%;
-  transform: rotate(-7deg);
-  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+  top: 68%;
+  right: 5%;
+  transform: rotate(-2deg);
+  clip-path: polygon(4% 0, 100% 0, 96% 100%, 0 100%);
+}
+
+.hotspot-settings {
+  top: 82%;
+  right: 6%;
+  transform: rotate(2deg);
+  clip-path: polygon(0 0, 96% 0, 100% 100%, 4% 100%);
 }
 
 /* Top Navigation Strip */

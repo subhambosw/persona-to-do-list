@@ -82,7 +82,7 @@ const PocketWatchMenu = ({
           {/* Custom High-Resolution Persona 5 Artwork Backdrop */}
           <div className="pocket-watch-art-wrapper">
             <img
-              src={asset('persona_5_stopwatch_menu_v2.jpg')}
+              src={asset('persona_5_stopwatch_menu_v3.jpg')}
               alt="Persona 5 Over-The-Shoulder Stopwatch Menu"
               className="pocket-watch-bg-art"
             />
@@ -102,11 +102,11 @@ const PocketWatchMenu = ({
 
           {/* Persona 5 Dynamic Interactive Cut-Out Ransom Menu Buttons */}
           <div className="pocket-menu-hotspots-layer">
-            {/* 1. INFILTRATE (Top-Left) */}
+            {/* 1. INFILTRATE (Top) */}
             <motion.button
               type="button"
               className="hotspot-btn hotspot-infiltrate"
-              whileHover={{ scale: 1.12, rotate: -10 }}
+              whileHover={{ scale: 1.08, rotate: -3 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(onOpenPomodoro)}
               title="Launch Palace Infiltration 25m Focus Clock"
@@ -119,11 +119,11 @@ const PocketWatchMenu = ({
               </div>
             </motion.button>
 
-            {/* 2. BOREDOM (Top-Right) */}
+            {/* 2. BOREDOM (Below Infiltrate) */}
             <motion.button
               type="button"
               className="hotspot-btn hotspot-boredom"
-              whileHover={{ scale: 1.12, rotate: 12 }}
+              whileHover={{ scale: 1.08, rotate: 2 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(onOpenBoredom)}
               title="Play Shin Godzilla Dino Runner Minigame"
@@ -136,11 +136,11 @@ const PocketWatchMenu = ({
               </div>
             </motion.button>
 
-            {/* 3. LO-FI RADIO (Center-Right) */}
+            {/* 3. LO-FI RADIO (Middle) */}
             <motion.button
               type="button"
               className="hotspot-btn hotspot-radio"
-              whileHover={{ scale: 1.12, rotate: -4 }}
+              whileHover={{ scale: 1.08, rotate: -2 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(onToggleRadio)}
               title="Open Beneath the Mask Lo-Fi Cassette Player"
@@ -153,11 +153,11 @@ const PocketWatchMenu = ({
               </div>
             </motion.button>
 
-            {/* 4. CONFIDANTS (Bottom-Left) */}
+            {/* 4. CONFIDANTS (Lower Middle) */}
             <motion.button
               type="button"
               className="hotspot-btn hotspot-confidants"
-              whileHover={{ scale: 1.12, rotate: 6 }}
+              whileHover={{ scale: 1.08, rotate: 3 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(onOpenConfidants)}
               title="View Phantom Thieves Social Links Roster"
@@ -170,11 +170,11 @@ const PocketWatchMenu = ({
               </div>
             </motion.button>
 
-            {/* 5. EVOLUTION (Bottom-Right) */}
+            {/* 5. EVOLUTION (Lower Right) */}
             <motion.button
               type="button"
               className="hotspot-btn hotspot-evolution"
-              whileHover={{ scale: 1.12, rotate: -6 }}
+              whileHover={{ scale: 1.08, rotate: -2 }}
               whileTap={{ scale: 0.94 }}
               onClick={() => handleSelect(onOpenEvolution)}
               title="View Shin Godzilla Evolution Mutation Roadmap"
@@ -183,6 +183,23 @@ const PocketWatchMenu = ({
                 <span className="hotspot-title">EVOLUTION</span>
                 <span className="hotspot-sub">
                   <Flame size={12} /> SHIN GODZILLA STREAK
+                </span>
+              </div>
+            </motion.button>
+
+            {/* 6. SETTINGS (Bottom) */}
+            <motion.button
+              type="button"
+              className="hotspot-btn hotspot-settings"
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              whileTap={{ scale: 0.94 }}
+              onClick={() => handleSelect(onClose)}
+              title="Return / Settings"
+            >
+              <div className="hotspot-content">
+                <span className="hotspot-title">SETTINGS</span>
+                <span className="hotspot-sub">
+                  <Sparkles size={12} /> PREFERENCES // CLOSE
                 </span>
               </div>
             </motion.button>

@@ -1,0 +1,407 @@
+/* Shin Godzilla Evolution Streak Modal & Laser Beam Styling */
+.godzilla-evo-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(3, 1, 6, 0.88);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.godzilla-evo-container {
+  width: min(94vw, 720px);
+  background: linear-gradient(145deg, #18092a 0%, #080312 100%);
+  border: 3px solid #c026d3;
+  box-shadow: 0 0 40px rgba(192, 38, 211, 0.5), 0 20px 45px rgba(0, 0, 0, 0.95);
+  padding: 24px 28px;
+  position: relative;
+  font-family: 'Persona5', 'Impact', sans-serif;
+  color: #fff;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.evo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #582187;
+  padding-bottom: 12px;
+}
+
+.evo-badge {
+  display: inline-block;
+  background: #e60012;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 900;
+  padding: 2px 8px;
+  letter-spacing: 2px;
+  transform: skewX(-12deg);
+}
+
+.evo-heading {
+  margin: 6px 0 0;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  color: #ffe600;
+  text-shadow: 0 0 10px rgba(255, 230, 0, 0.5);
+  font-weight: 900;
+}
+
+.evo-close-btn {
+  background: #25103a;
+  border: 1px solid #c026d3;
+  color: #ff3366;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  transform: skewX(-8deg);
+}
+
+.evo-close-btn:hover {
+  background: #e60012;
+  color: #fff;
+  box-shadow: 0 0 12px #e60012;
+  transform: skewX(-8deg) scale(1.1);
+}
+
+/* Current Form Hero Banner */
+.current-form-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 2px solid var(--form-glow, #c026d3);
+  box-shadow: 0 0 20px var(--form-glow, #c026d3);
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  transform: skewX(-3deg);
+}
+
+.form-glyph-box {
+  width: 64px;
+  height: 64px;
+  background: #1e0b36;
+  border: 2px solid var(--form-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.glyph-symbol {
+  font-size: 34px;
+}
+
+.form-details-box {
+  flex: 1;
+}
+
+.form-codename {
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  color: var(--form-glow);
+  font-weight: 800;
+}
+
+.form-title {
+  margin: 2px 0 6px;
+  font-size: 18px;
+  letter-spacing: 1px;
+  color: #fff;
+}
+
+.form-desc {
+  font-size: 11px;
+  color: #cbd5e1;
+  margin: 0 0 8px;
+  line-height: 1.3;
+}
+
+.form-active-perk {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: #ffe600;
+  font-weight: 800;
+}
+
+.spark-icon {
+  flex-shrink: 0;
+}
+
+.streak-counter-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #140526;
+  border: 2px solid #ffe600;
+  padding: 8px 16px;
+  min-width: 80px;
+}
+
+.streak-label {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: #ffe600;
+  font-weight: 900;
+}
+
+.streak-number {
+  font-size: 34px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1;
+  margin: 2px 0;
+  text-shadow: 0 0 10px #ffe600;
+}
+
+.streak-unit {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: #a78bfa;
+}
+
+/* Radiation Meter Card */
+.radiation-meter-card {
+  background: #0a0414;
+  border: 1px solid #582187;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+}
+
+.rad-meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+
+.rad-title {
+  color: #c026d3;
+}
+
+.rad-pct {
+  color: #ffe600;
+}
+
+.rad-track {
+  width: 100%;
+  height: 10px;
+  background: #000;
+  border: 1px solid #3d1b63;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+.rad-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #9d00ff 0%, #c026d3 50%, #e60012 100%);
+  transition: width 0.4s ease;
+  box-shadow: 0 0 12px #c026d3;
+}
+
+.laser-trigger-row {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-atomic-beam {
+  flex: 2;
+  background: linear-gradient(90deg, #c026d3 0%, #9d00ff 100%);
+  color: #fff;
+  border: 2px solid #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 10px 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transform: skewX(-6deg);
+  transition: all 0.2s ease;
+  box-shadow: 0 0 15px rgba(192, 38, 211, 0.6);
+}
+
+.btn-atomic-beam:hover:not(:disabled) {
+  background: #e60012;
+  box-shadow: 0 0 25px rgba(230, 0, 18, 0.9);
+  transform: skewX(-6deg) scale(1.02);
+}
+
+.btn-streak-boost {
+  flex: 1;
+  background: #1b0c36;
+  border: 1px solid #ffe600;
+  color: #ffe600;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 900;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: skewX(-6deg);
+  transition: all 0.15s ease;
+}
+
+.btn-streak-boost:hover {
+  background: #ffe600;
+  color: #000;
+  box-shadow: 0 0 12px #ffe600;
+}
+
+/* Roadmap Grid */
+.evo-roadmap-title {
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: #a78bfa;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.forms-timeline-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.form-timeline-card {
+  background: #0e051c;
+  border: 1px solid #3d1b63;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transform: skewX(-3deg);
+  transition: all 0.2s ease;
+}
+
+.form-timeline-card.unlocked {
+  border-color: var(--f-color);
+  background: #16082b;
+}
+
+.form-timeline-card.current {
+  border: 2px solid #ffe600;
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.6);
+  background: linear-gradient(135deg, #240b45 0%, #120424 100%);
+}
+
+.timeline-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-glyph {
+  font-size: 18px;
+}
+
+.timeline-streak-req {
+  font-size: 9px;
+  color: #a78bfa;
+  font-weight: 800;
+}
+
+.timeline-card-name {
+  font-size: 10.5px;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.timeline-status-pill {
+  font-size: 8px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  padding: 2px 4px;
+  background: rgba(0, 0, 0, 0.4);
+  color: #bbb;
+  width: fit-content;
+}
+
+.form-timeline-card.current .timeline-status-pill {
+  background: #ffe600;
+  color: #000;
+}
+
+.form-timeline-card.unlocked .timeline-status-pill {
+  color: #a7f3d0;
+}
+
+/* Full Screen Laser Beam */
+.atomic-screen-laser-beam {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: laser-pulse 2.5s ease-out forwards;
+}
+
+.laser-flash-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(157, 0, 255, 0.35);
+  animation: flash-strobe 0.4s ease-out 3;
+}
+
+.laser-core-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: #ffffff;
+  box-shadow: 0 0 20px #c026d3, 0 0 60px #9d00ff, 0 0 100px #9d00ff;
+  transform: rotate(-15deg);
+  animation: core-beam-expand 2.2s cubic-bezier(0.1, 0.9, 0.2, 1) forwards;
+}
+
+@keyframes laser-pulse {
+  0% { opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes flash-strobe {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 0.7; }
+}
+
+@keyframes core-beam-expand {
+  0% { transform: scaleY(0.1) rotate(-15deg); }
+  25% { transform: scaleY(3.5) rotate(-15deg); }
+  70% { transform: scaleY(2) rotate(-15deg); }
+  100% { transform: scaleY(0.01) rotate(-15deg); }
+}
+
+@media (max-width: 680px) {
+  .forms-timeline-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .current-form-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+}

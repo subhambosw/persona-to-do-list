@@ -10,6 +10,12 @@ import AtomicBeamEffect from './components/AtomicBeam/AtomicBeamEffect.jsx';
 import PersonaMascot from './components/PersonaMascot/PersonaMascot.jsx';
 import CallingCardAlert from './components/ReminderAlert/CallingCardAlert.jsx';
 import BoredomClearGame from './components/BoredomClear/BoredomClearGame.jsx';
+import BottomCommandDock from './components/BottomCommandDock/BottomCommandDock.jsx';
+import PalacePomodoroModal from './components/PomodoroTimer/PalacePomodoroModal.jsx';
+import ConfidantsDrawer from './components/Confidants/ConfidantsDrawer.jsx';
+import ThiefStatsModal from './components/ThiefStats/ThiefStatsModal.jsx';
+import GodzillaEvolutionWidget from './components/GodzillaEvolution/GodzillaEvolutionWidget.jsx';
+import AllOutAttackCutin from './components/AllOutAttack/AllOutAttackCutin.jsx';
 import { reminderManager } from './utils/reminderManager.js';
 import { sounds } from './utils/audio.js';
 import { Gamepad2 } from 'lucide-react';
@@ -25,6 +31,19 @@ function App() {
   const [isTremorActive, setIsTremorActive] = useState(false);
   const [activeReminderTask, setActiveReminderTask] = useState(null);
   const [isBoredomOpen, setIsBoredomOpen] = useState(false);
+
+  // New P5 × Shin Godzilla Tactical Features
+  const [isPomodoroOpen, setIsPomodoroOpen] = useState(false);
+  const [isConfidantsOpen, setIsConfidantsOpen] = useState(false);
+  const [isStatsOpen, setIsStatsOpen] = useState(false);
+  const [isEvolutionOpen, setIsEvolutionOpen] = useState(false);
+  const [isAllOutAttackOpen, setIsAllOutAttackOpen] = useState(false);
+  const [activeConfidantId, setActiveConfidantId] = useState('morgana');
+  const [atomicEnergy, setAtomicEnergy] = useState(75);
+  const [streakDays, setStreakDays] = useState(() => {
+    const saved = localStorage.getItem('p5_godzilla_streak');
+    return saved ? parseInt(saved, 10) : 5;
+  });
 
   const goToNextDay = () => {
     setCurrentDate((prev) => dayjs(prev).add(1, 'day').toDate());
@@ -43,15 +62,37 @@ function App() {
     setIsFiringBeam(true);
   };
 
-  // ⚡ AUTOMATIC ATOMIC RAY ON ANY TASK COMPLETED
+  // ⚡ AUTOMATIC ATOMIC RAY ON ANY TASK COMPLETED & ALL-OUT ATTACK ON 100%
   const handleTaskEvent = (event) => {
     setRecentTaskEvent(event);
-    if (event.type === 'TASK_COMPLETED' || event.type === 'ALL_DONE') {
+    if (event.type === 'TASK_COMPLETED') {
       setIsTremorActive(true);
-      // 🔥 Automatically fire the Shin Godzilla purple atomic beam whenever a task is finished!
       setIsFiringBeam(true);
+      setAtomicEnergy((prev) => Math.min(100, prev + 15));
       setTimeout(() => setIsTremorActive(false), 650);
+    } else if (event.type === 'ALL_DONE') {
+      setIsTremorActive(true);
+      setIsFiringBeam(true);
+      setAtomicEnergy(100);
+      setTimeout(() => {
+        setIsTremorActive(false);
+        setIsAllOutAttackOpen(true);
+      }, 500);
     }
+  };
+
+  const handleRewardEnergy = (amount, reason) => {
+    setAtomicEnergy((prev) => Math.min(100, prev + amount));
+    setRecentTaskEvent({
+      type: 'ENERGY_REWARDED',
+      title: reason || `+${amount}% Atomic Energy`
+    });
+  };
+
+  const handleTriggerAtomicPulse = () => {
+    setIsTremorActive(true);
+    setIsFiringBeam(true);
+    setTimeout(() => setIsTremorActive(false), 800);
   };
 
   // Start checking for scheduled mission reminders
@@ -197,7 +238,7 @@ function App() {
         onTaskEvent={handleTaskEvent}
       />
 
-      {/* Bottom Left: Interactive Persona Person (Joker) with dynamic speech & Roar tester */}
+      {/* Bottom Left: Interactive Persona Mascot (Joker) with dynamic speech & Roar tester */}
       <PersonaMascot
         recentEvent={recentTaskEvent}
         onTriggerRoar={() => {
@@ -209,6 +250,53 @@ function App() {
 
       {/* Bottom Right: "Take Your Time" Hat & Logo with SFX and Beam trigger */}
       <TakeYourTime onTriggerBeam={handleTriggerBeam} />
+
+      {/* ⚡ Tactical Bottom Command Dock & Lo-Fi Cassette Radio */}
+      <BottomCommandDock
+        onOpenPomodoro={() => setIsPomodoroOpen(true)}
+        onOpenConfidants={() => setIsConfidantsOpen(true)}
+        onOpenStats={() => setIsStatsOpen(true)}
+        onOpenEvolution={() => setIsEvolutionOpen(true)}
+        streakDays={streakDays}
+      />
+
+      {/* ⏳ Palace Infiltration Pomodoro Timer */}
+      <PalacePomodoroModal
+        isOpen={isPomodoroOpen}
+        onClose={() => setIsPomodoroOpen(false)}
+        onRewardEnergy={handleRewardEnergy}
+      />
+
+      {/* 👥 Phantom Thieves Confidants / Social Links Drawer */}
+      <ConfidantsDrawer
+        isOpen={isConfidantsOpen}
+        onClose={() => setIsConfidantsOpen(false)}
+        activeConfidantId={activeConfidantId}
+        onActiveConfidantChange={setActiveConfidantId}
+      />
+
+      {/* 📊 5-Axis Phantom Thief Stats Pentagon Radar */}
+      <ThiefStatsModal
+        isOpen={isStatsOpen}
+        onClose={() => setIsStatsOpen(false)}
+        tasks={availableTasks}
+      />
+
+      {/* 🦖 Shin Godzilla Mutation & Evolution Streak Modal */}
+      <GodzillaEvolutionWidget
+        isOpen={isEvolutionOpen}
+        onClose={() => setIsEvolutionOpen(false)}
+        streakDays={streakDays}
+        atomicEnergy={atomicEnergy}
+        onTriggerAtomicPulse={handleTriggerAtomicPulse}
+      />
+
+      {/* 💥 All-Out Attack Cinematic Finisher Cut-in */}
+      <AllOutAttackCutin
+        isOpen={isAllOutAttackOpen}
+        onClose={() => setIsAllOutAttackOpen(false)}
+        tasksClearedCount={availableTasks.filter((t) => t.isComplete).length || 5}
+      />
     </div>
   );
 }

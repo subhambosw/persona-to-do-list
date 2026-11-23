@@ -1,0 +1,218 @@
+/* All-Out Attack Cinematic Finisher Styling */
+.aoa-overlay-root {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Persona5', 'Impact', sans-serif;
+}
+
+/* Slices */
+.aoa-backdrop-slice-top {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 70%;
+  background: #e60012;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+.aoa-backdrop-slice-bottom {
+  position: absolute;
+  bottom: -20%;
+  right: -20%;
+  width: 140%;
+  height: 60%;
+  background: #110521;
+  border-top: 6px solid #ffe600;
+  z-index: 2;
+}
+
+/* Hero Art Container */
+.aoa-hero-art-container {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aoa-hero-art {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(115%) saturate(120%);
+}
+
+.aoa-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2) 20%, rgba(10, 2, 20, 0.85) 90%);
+}
+
+/* Typography & Content Wrapper */
+.aoa-content-wrapper {
+  position: relative;
+  z-index: 10;
+  width: min(92vw, 800px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+}
+
+.aoa-ribbon-tag {
+  background: #ffe600;
+  color: #000;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  padding: 6px 20px;
+  transform: skewX(-14deg);
+  margin-bottom: 16px;
+  box-shadow: 0 0 20px rgba(255, 230, 0, 0.8);
+}
+
+.aoa-main-quote {
+  font-size: clamp(28px, 6vw, 56px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: 2px;
+  color: #ffffff;
+  text-shadow: 4px 4px 0 #000, -2px -2px 0 #000, 0 0 25px rgba(255, 255, 255, 0.6);
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  transform: skewX(-6deg);
+}
+
+.quote-red {
+  color: #e60012;
+  text-shadow: 4px 4px 0 #000, 0 0 35px rgba(230, 0, 18, 0.9);
+}
+
+.aoa-subquote {
+  font-size: clamp(12px, 2vw, 16px);
+  color: #ffe600;
+  letter-spacing: 2px;
+  font-weight: 800;
+  text-shadow: 2px 2px 0 #000;
+  margin: 0 0 24px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 4px 16px;
+  transform: skewX(-4deg);
+}
+
+/* Rewards Card */
+.aoa-rewards-card {
+  display: flex;
+  gap: 16px;
+  background: rgba(8, 2, 16, 0.9);
+  border: 2px solid #9d00ff;
+  box-shadow: 0 0 30px rgba(157, 0, 255, 0.5);
+  padding: 14px 22px;
+  margin-bottom: 24px;
+  transform: skewX(-6deg);
+}
+
+.reward-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: left;
+}
+
+.reward-cell + .reward-cell {
+  border-left: 1px dashed rgba(157, 0, 255, 0.4);
+  padding-left: 16px;
+}
+
+.cell-icon {
+  color: #10b981;
+}
+
+.cell-icon.gold {
+  color: #ffe600;
+}
+
+.cell-icon.purple {
+  color: #c026d3;
+}
+
+.cell-label {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #a78bfa;
+  font-weight: 800;
+}
+
+.cell-val {
+  font-size: 15px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.cell-val.gold {
+  color: #ffe600;
+}
+
+.cell-val.purple {
+  color: #f43f5e;
+}
+
+/* Claim Button */
+.aoa-claim-btn {
+  background: #ffe600;
+  color: #000;
+  border: 3px solid #fff;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  padding: 14px 32px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transform: skewX(-10deg);
+  transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 0 25px rgba(255, 230, 0, 0.8), 0 8px 0 #b3a000;
+}
+
+.aoa-claim-btn:hover {
+  background: #ffffff;
+  color: #e60012;
+  box-shadow: 0 0 35px rgba(255, 255, 255, 1), 0 8px 0 #ccc;
+  transform: skewX(-10deg) scale(1.06);
+}
+
+.aoa-claim-btn:active {
+  transform: skewX(-10deg) translateY(4px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 4px 0 #ccc;
+}
+
+@media (max-width: 640px) {
+  .aoa-rewards-card {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .reward-cell + .reward-cell {
+    border-left: none;
+    border-top: 1px dashed rgba(157, 0, 255, 0.4);
+    padding-left: 0;
+    padding-top: 10px;
+  }
+  
+  .aoa-claim-btn {
+    font-size: 12px;
+    padding: 10px 18px;
+  }
+}

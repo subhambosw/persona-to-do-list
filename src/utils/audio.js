@@ -216,6 +216,34 @@ class SoundController {
     osc.stop(t + 0.85);
   }
 
+  // Persona 5 Rank Up / Level Up / Success Chime
+  playSuccess() {
+    if (this.muted) return;
+    this.init();
+    if (!this.ctx) return;
+
+    const t = this.ctx.currentTime;
+    [523.25, 659.25, 783.99, 1046.5].forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, t + idx * 0.08);
+
+      gain.gain.setValueAtTime(0.18, t + idx * 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.001, t + idx * 0.08 + 0.3);
+
+      osc.connect(gain);
+      gain.connect(this.ctx.destination);
+      osc.start(t + idx * 0.08);
+      osc.stop(t + idx * 0.08 + 0.35);
+    });
+  }
+
+  // Shin Godzilla Dorsal Atomic Laser Beam Fire
+  playBeam() {
+    this.playAtomicBlast();
+  }
+
   // Fallback synthesizer in case local audio element is blocked
   playSyntheticRoarFallback() {
     this.init();
